@@ -1,0 +1,109 @@
+	
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		table, th, td {
+		  border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+	
+	<?php  
+	
+
+?>
+</body>
+</html>
+
+
+
+	// Selecting all patients from the table 
+	 $stmt = $pdo->prepare("SELECT * FROM patient_table");
+
+	 if ($stmt->execute()) {
+		echo "<pre>"; // Displayed in a fixed-width font, and the text preserves both spaces and line breaks
+		print_r($stmt->fetchAll()); // Fetches all rows and returns the result
+		echo "<pre>";
+	 }
+
+
+  
+	// Selecting all patients from the table 
+	 $stmt = $pdo->prepare("SELECT * FROM patient_table");
+
+	 if ($stmt->execute()) {
+		echo "<pre>"; // Displayed in a fixed-width font, and the text preserves both spaces and line breaks
+		print_r($stmt->fetch()); // Fetches a row and returns the result
+		echo "<pre>";
+	 }
+
+
+
+	//Inserting a new user to the table
+
+	 $query = "INSERT INTO patient_table (patient_id, first_name, 
+	 	last_name, gender, date_of_birth, phone_number, address, medical_history_id ) 
+	 	VALUES (?,?,?,?,?,?,?,?)";
+
+	 $stmt = $pdo->prepare($query);
+
+	 $executeQuery = $stmt->execute(
+	 	[6,"Daryl","Smith","M",'2005-08-26', '+63 456 345 6745', "34 San Monatana", 6]
+	 );
+
+	 if ($executeQuery) {
+	 	echo "Query successful!";
+	 }
+	 else {
+	 	echo "Query failed";
+	}
+
+
+
+
+ 	// Updating a user from the database
+
+	 $query = "DELETE FROM patient_table 
+	 		  WHERE patient_id = 6
+	 		  ";
+
+ 	$stmt = $pdo->prepare($query);
+
+	$executeQuery = $stmt->execute();
+
+	if ($executeQuery) {
+	 	echo "Deletion successful!";
+	 }
+	else {
+	 	echo "Query failed";
+	 }
+
+
+
+
+ 	// Updating a user from the database
+
+	 $query = "UPDATE patient_table 
+	 		  SET gender = ?, last_name = ?
+	 		  WHERE patient_id = 6
+	 		  ";
+
+	 $stmt = $pdo->prepare($query);
+
+	 $executeQuery = $stmt->execute(
+	 	["M", "Dale"]
+	 );
+
+	 if ($executeQuery) {
+	 	echo "Deletion successful!";
+	 }
+	 else {
+	 	echo "Query failed";
+	 }
