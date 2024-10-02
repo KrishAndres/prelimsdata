@@ -1,0 +1,98 @@
+create table patient_table (
+    patient_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gender VARCHAR(50),
+    date_of_birth DATE,
+    phone_number VARCHAR(50),
+    address VARCHAR(50),
+    medical_history_id INT
+);
+
+create table Medical_History (
+    history_id INT,
+    patient_id INT,
+    condition VARCHAR(50),
+    doctor_id INT,
+    last_updated DATE
+);
+
+create table Doctors_Table (
+    doctor_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gender VARCHAR(50),
+    license_number VARCHAR(50),
+    phone_number VARCHAR(50)
+);
+
+
+create table appointment_table (
+    appointment_id INT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATE,
+    IsComplete VARCHAR(50)
+);
+
+
+create table Prescription_table (
+    prescription_id INT,
+    appointment_id INT,
+    doctor_id INT,
+    medication_name VARCHAR(50)
+);
+
+
+create table Billing_table (
+    billing_id INT,
+    patient_id INT,
+    appointment_id INT,
+    total_amount DECIMAL(6,2),
+    IsPaymentComplete VARCHAR(50),
+    billing_date DATE
+);
+
+
+insert into patient_table (patient_id, first_name, last_name, gender, date_of_birth, phone_number, address, medical_history_id) values (1, 'Thorvald', 'Stainson', 'M', '7/15/2004', '+86 487 562 1969', '6 Meadow Ridge Plaza', 34);
+insert into patient_table (patient_id, first_name, last_name, gender, date_of_birth, phone_number, address, medical_history_id) values (2, 'Raychel', 'Goldine', 'F', '7/23/2022', '+62 897 883 4540', '0 2nd Lane', 41);
+insert into patient_table (patient_id, first_name, last_name, gender, date_of_birth, phone_number, address, medical_history_id) values (3, 'Nanine', 'Grandison', 'F', '11/24/2018', '+7 381 198 6354', '4 Ronald Regan Avenue', 15);
+insert into patient_table (patient_id, first_name, last_name, gender, date_of_birth, phone_number, address, medical_history_id) values (4, 'Anabal', 'Gummow', 'F', '11/5/2018', '+62 488 172 3967', '27 Karstens Terrace', 2);
+insert into patient_table (patient_id, first_name, last_name, gender, date_of_birth, phone_number, address, medical_history_id) values (5, 'Blanche', 'Menis', 'F', '3/1/2012', '+57 892 134 1101', '274 Montana Road', 12);
+
+
+insert into Medical_History (history_id, patient_id, condition, doctor_id, last_updated) values (1, 2, '7795', 24, '7/11/2023');
+insert into Medical_History (history_id, patient_id, condition, doctor_id, last_updated) values (2, 10, '64812', 7, '10/6/2021');
+insert into Medical_History (history_id, patient_id, condition, doctor_id, last_updated) values (3, 21, 'E8030', 50, '12/13/2020');
+insert into Medical_History (history_id, patient_id, condition, doctor_id, last_updated) values (4, 18, '20043', 74, '4/25/2021');
+insert into Medical_History (history_id, patient_id, condition, doctor_id, last_updated) values (5, 48, '4351', 25, '10/3/2021');
+
+
+insert into Doctors_Table (doctor_id, first_name, last_name, gender, license_number, phone_number) values (1, 'Deanna', 'Perri', 'F', '6368011823', '+995 661 871 0981');
+insert into Doctors_Table (doctor_id, first_name, last_name, gender, license_number, phone_number) values (2, 'Walton', 'Rawlings', 'M', '1481932365', '+86 634 698 0436');
+insert into Doctors_Table (doctor_id, first_name, last_name, gender, license_number, phone_number) values (3, 'Renard', 'Toderi', 'M', '3301136702', '+48 880 958 5925');
+insert into Doctors_Table (doctor_id, first_name, last_name, gender, license_number, phone_number) values (4, 'Keriann', 'Ebbens', 'F', '0909079153', '+33 772 997 7637');
+insert into Doctors_Table (doctor_id, first_name, last_name, gender, license_number, phone_number) values (5, 'Ingmar', 'Santhouse', 'M', '4814504535', '+86 168 697 4512');
+
+
+insert into appointment_table (appointment_id, patient_id, doctor_id, appointment_date, IsComplete) values (1, 41, 16, '8/26/2021', false);
+insert into appointment_table (appointment_id, patient_id, doctor_id, appointment_date, IsComplete) values (2, 16, 8, '4/8/2021', true);
+insert into appointment_table (appointment_id, patient_id, doctor_id, appointment_date, IsComplete) values (3, 28, 49, '10/19/2020', true);
+insert into appointment_table (appointment_id, patient_id, doctor_id, appointment_date, IsComplete) values (4, 31, 11, '3/6/2022', true);
+insert into appointment_table (appointment_id, patient_id, doctor_id, appointment_date, IsComplete) values (5, 50, 40, '8/3/2024', true);
+
+
+insert into Prescription_table (prescription_id, appointment_id, doctor_id, medication_name) values (1, 1, 25, 'Aerospan');
+insert into Prescription_table (prescription_id, appointment_id, doctor_id, medication_name) values (2, 30, 14, 'Warfarin Sodium');
+insert into Prescription_table (prescription_id, appointment_id, doctor_id, medication_name) values (3, 15, 3, 'CVS PHARMACY');
+insert into Prescription_table (prescription_id, appointment_id, doctor_id, medication_name) values (4, 41, 32, 'Simvastatin');
+insert into Prescription_table (prescription_id, appointment_id, doctor_id, medication_name) values (5, 8, 29, 'health mart nicotine');
+
+
+insert into Billing_table (billing_id, patient_id, appointment_id, total_amount, IsPaymentComplete, billing_date) values (1, 16, 12, 125.97, false, '1/17/2024');
+insert into Billing_table (billing_id, patient_id, appointment_id, total_amount, IsPaymentComplete, billing_date) values (2, 33, 20, 727.51, true, '6/19/2024');
+insert into Billing_table (billing_id, patient_id, appointment_id, total_amount, IsPaymentComplete, billing_date) values (3, 32, 28, 4970.66, true, '4/22/2024');
+insert into Billing_table (billing_id, patient_id, appointment_id, total_amount, IsPaymentComplete, billing_date) values (4, 9, 45, 1792.79, true, '12/8/2023');
+insert into Billing_table (billing_id, patient_id, appointment_id, total_amount, IsPaymentComplete, billing_date) values (5, 38, 11, 2793.45, false, '9/9/2024');
+
+
